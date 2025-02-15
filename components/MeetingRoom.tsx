@@ -20,15 +20,15 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 import { LayoutList, Users } from 'lucide-react';
-import { useSearchParams } from 'next/navigation'; 
+import { useSearchParams, useRouter } from 'next/navigation'; 
 import EndCallButton from './EndCallButton';
 import Loader from './Loader';
-import { useRouter } from 'next/navigation';
 
 type CallLayoutType = 'grid' | 'speaker-left' | 'speaker-right';
 
 const MeetingRoom = ({ setIsSetupComplete }: { setIsSetupComplete: (value: boolean) => void }) => {
   const searchParams = useSearchParams();
+  const router = useRouter();  // ✅ Moved to the top level
   const isPersonalRoom = !!searchParams.get('personal');
   const [layout, setLayout] = useState<CallLayoutType>('speaker-left');
   const [showParticipants, setShowParticipants] = useState(false);
@@ -56,7 +56,7 @@ const MeetingRoom = ({ setIsSetupComplete }: { setIsSetupComplete: (value: boole
         return <PaginatedGridLayout />;
     }
   };
-  const router = useRouter()
+
   return (
     <section className='relative h-screen w-full overflow-hidden pt-4 text-white'>
       <div className="flex relative size-full items-center justify-center">
@@ -75,7 +75,7 @@ const MeetingRoom = ({ setIsSetupComplete }: { setIsSetupComplete: (value: boole
       
       {/* Bottom Controls */}
       <div className="fixed bottom-0 flex w-full items-center justify-center gap-5 flex-wrap">
-        <CallControls onLeave={()=>router.push('/')}/>
+        <CallControls onLeave={() => router.push('/')} />
         
         {/* Layout Selector */}
         <DropdownMenu>
@@ -108,7 +108,7 @@ const MeetingRoom = ({ setIsSetupComplete }: { setIsSetupComplete: (value: boole
           </div>
         </button>
 
-        {!isPersonalRoom && <EndCallButton/>}
+        {!isPersonalRoom && <EndCallButton />}
       </div>
     </section>
   );
