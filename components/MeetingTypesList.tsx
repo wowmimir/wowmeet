@@ -10,7 +10,6 @@ import { useUser } from '@clerk/nextjs';
 import Loader from './Loader';
 import { Textarea } from './ui/textarea';
 import ReactDatePicker from 'react-datepicker';
-import { Toast } from './ui/toast';
 import { useToast } from '@/hooks/use-toast';
 import { Input } from './ui/input';
 
@@ -64,6 +63,7 @@ const MeetingTypeList = () => {
       toast({ title: "Meeting scheduled successfully" });
   
     } catch (error) {
+      console.error("Meeting creation error:", error);
       toast({ title: "Failed to create meeting" });
     }
   };
