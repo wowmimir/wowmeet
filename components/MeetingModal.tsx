@@ -8,7 +8,7 @@ import { cn } from '@/lib/utils'
 import { Button } from './ui/button'
 
 interface MeetingModalProps {
-    isOpen: boolean, onClose: () => void, title: string, className: string, children?: ReactNode, handleClick: () => void, buttonText?: string, image?: string, buttonIcon?: string,
+    isOpen: boolean, onClose: () => void, title: string, className?: string, children?: ReactNode, handleClick: () => void, buttonText?: string, image?: string, buttonIcon?: string,
 }
 const MeetingModal = ({ isOpen, onClose, title, className, children, handleClick, buttonText, image, buttonIcon }: MeetingModalProps) => {
     return (
